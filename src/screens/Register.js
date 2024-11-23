@@ -52,9 +52,9 @@ export default class Register extends Component{
 
             <Text>Navegacion cruzada a Login</Text>
 
-            {/* <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")}>
                 <Text>Ya tengo cuenta</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
 
             <TextInput style = {styles.field}
             keyboardType = 'email-address'
