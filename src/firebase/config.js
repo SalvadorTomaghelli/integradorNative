@@ -2,14 +2,13 @@ import app from 'firebase/app'
 import firebase from 'firebase'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB0GAqvsU9GkrK1j9hUCv6JGOV8aSurcZg",
-    authDomain: "miproyecto-8c800.firebaseapp.com",
-    projectId: "miproyecto-8c800",
-    storageBucket: "miproyecto-8c800.appspot.com",
-    messagingSenderId: "400817997586",
-    appId: "1:400817997586:web:a2ed325bb57d31c58e95cb",
-    measurementId: "G-TE96PM5C80"
-  };
+  apiKey: "AIzaSyAJ0a6W4WwdHwGARY8eoEYZN0JukljXVr8",
+  authDomain: "integrador-native.firebaseapp.com",
+  projectId: "integrador-native",
+  storageBucket: "integrador-native.firebasestorage.app",
+  messagingSenderId: "514721104315",
+  appId: "1:514721104315:web:b77ee995cc8969a378c49e"
+};
 
   app.initializeApp(firebaseConfig)
   export const auth = firebase.auth();
