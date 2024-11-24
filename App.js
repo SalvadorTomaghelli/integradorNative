@@ -12,11 +12,11 @@ function App() {
     <NavigationContainer>
 
       <Stack.Navigator>
-      <Stack.Screen
+       <Stack.Screen
           name="HomeMenu"
           component={HomeMenu}
           options={{ headerShown: false }}
-        />
+        /> 
         <Stack.Screen
           name="Login"
           component={Login}

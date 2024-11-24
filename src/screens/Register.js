@@ -12,20 +12,39 @@ export default class Register extends Component{
             email: "",
             userName: "",
             password: "",
-            bio: "",
-            createdAt: ""
-
+            createdAt: "",
         }
     }
-    //esto de aca para ver que el usuario esta logueado, xq no podes registrarte estando logueado.
-    // componentDidMount(){
-    //     auth.onAuthStateChanged(user => {
-    //         if(user){
-    //             this.props.navigation.navigate("Home")
-    //         }
-    //     })
-    // }
+    
+    componentDidMount(){
+        auth.onAuthStateChanged(user => {
+            if(user){
+                this.props.navigation.navigate("Home")
+            }
+        })
+    }
 
+    validarFormulario(){
+        const email = this.state.email
+        const userName = this.state.userName
+        const password = this.state.password
+        if (email !== '' && userName !== '' && password !== ''){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    validarEmail(email) {
+        return email.includes('@');
+    }
+    validarUserName(userName) {
+        return userName !== '';
+    }
+    validarPassword(password) {
+        return password.length >= 6;
+    }
+    
 
     handleSubmit(){
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -33,12 +52,12 @@ export default class Register extends Component{
         this.setState({registred: true}),
         db.collection('users').add({
             email: this.state.email,
-            bio:this.state.bio,
+            password:this.state.password,
             userName: this.state.userName,
             createdAt: Date.now(),
         })
         )
-        .then(() => this.props.navigation.navigate("Usuarios"))
+        .then(() => this.props.navigation.navigate("Login"))
         .catch((error) => this.setState({ error: "Fallo el registro" }))
     }
 
@@ -75,7 +94,7 @@ export default class Register extends Component{
             onChangeText = {text => this.setState({password:text})}
             value = {this.state.password}
             />
-            <TouchableOpacity onPress ={() => this.handleSubmit()}>
+            <TouchableOpacity disabled={!this.validarFormulario()} onPress ={() => this.handleSubmit()}>
                 <Text>Register</Text>
             </TouchableOpacity>
             

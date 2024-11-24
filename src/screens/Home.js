@@ -30,7 +30,9 @@ export default class Home extends Component{
             <View>
                 <Text>
                     Home
+                    
                 </Text>
+                <CommentForm/>
                 {this.state.comentarios.length === 0 ? (<Text>No hay posteos aun</Text>) : 
                 <FlatList data={this.state.comentarios} keyExtractor={item => item.id.toString()} renderItem={({item})=>{return <Comentarios infoComentarios={item}/>}}/>} 
                                                                                     {/*  fijarse si es toString()  */}
