@@ -3,6 +3,7 @@ import { View,Text, FlatList, } from "react-native";
 import CommentForm from "../components/CommentForm";
 import { TextInput } from "react-native-web";
 import { auth, db } from '../firebase/config'
+import Comentarios from "../components/Comentarios";
 
 
 
