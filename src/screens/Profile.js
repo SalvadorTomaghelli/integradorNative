@@ -19,7 +19,7 @@ export default class Profile extends Component{
         return(
             <View>
                 <Text>
-                    Home
+                    Profile
                     
                 </Text>
                 
