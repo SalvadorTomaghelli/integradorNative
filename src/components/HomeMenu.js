@@ -5,6 +5,9 @@ import Home from "../screens/Home";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Profile from "../screens/Profile";
 import CraerPost from "../screens/CrearPost";
+import Buscador from "../screens/Buscador";
+
+
 
 class HomeMenu extends Component {
   constructor() {
@@ -47,6 +50,13 @@ class HomeMenu extends Component {
             headerShown: false,
             tabBarIcon: () => <AntDesign name="profile" size={24} color="black" />,
           }}/>
+        <Tab.Screen
+          name='Buscador'
+          component={Buscador}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => <AntDesign name="search1" size={24} color="black" />,
+          }} />
       </Tab.Navigator>
     );
   }
