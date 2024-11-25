@@ -29,6 +29,7 @@ class comentarioForm extends Component {
       createdAt: Date.now(),
       likes:[]
     })
+    this.props.navigation.navigate('Home')
   }
   render() {
     return (
