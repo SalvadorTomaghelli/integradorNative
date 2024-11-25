@@ -4,6 +4,7 @@ import { auth, db } from '../firebase/config'
 import Home from "../screens/Home";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Profile from "../screens/Profile";
+import CraerPost from "../screens/CrearPost";
 
 class HomeMenu extends Component {
   constructor() {
@@ -28,6 +29,14 @@ class HomeMenu extends Component {
           options={{
             headerShown: false,
             tabBarIcon: () => <AntDesign name="home" size={24} color="black" />,
+          }}
+        />
+        <Tab.Screen
+          name="CrearPost"
+          component={(props) => <CraerPost {...props} />}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => <AntDesign name="plus" size={24} color="black" />,
           }}
         />
         <Tab.Screen 
