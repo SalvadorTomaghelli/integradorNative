@@ -1,38 +1,73 @@
 import React, {Component} from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { TextInput } from "react-native-web";
-import { auth, db } from '../firebase/config'
+import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import {auth} from '../firebase/config'
 
-class Login extends Component {
+export default class Login extends Component {
     constructor() {
       super();
       this.state = {
         email: "",
         password: "",
-        logued: false,
-        err: ""
+        logueado: false,
+        error: ""
       };
     }
+
     componentDidMount(){
-      auth.onAuthStateChanged(user => console.log('el usuario es:', user))
+        auth.onAuthStateChanged(() => {
+            if (this.state.logueado) {
+                this.props.navigation.navigate('Home')
+            }
+        })
     }
-    onSubmit() {
-      console.log(
-        "Valores del form:",
-        "mail",
-        this.state.email,
-        "pass",
-        this.state.password
-      );
+
+    isEmailValid(){
+      if ((this.state.email === '') || (!this.state.email.includes('@'))){
+          this.setState({error: 'email invalido'})
+          console.log(this.state.error)
+          return false
+      } else {
+          return true
+      }
+  }
+
+  isPasswordValid(){
+    if ((this.state.password === '') || (!this.state.password >= 6)){
+        this.setState({error: 'contrasena invalida'})
+        return false
+    } else {
+        return true
+    }    
+}
+
+
+  isFormValid(){
+  if(this.isEmailValid() && this.isPasswordValid()) {
+      return true
+  } else {
+      return false
+  } 
+}
+
+
+
+    handleSubmit() {
+      if(this.isFormValid()){
       auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(response => this.setState({logued:true}))
+      .then(response => this.setState({logueado:true}))
       .catch(e => this.setState({error: 'fallo el logueo'}))
+      return console.log(this.state.logueado)
+
+    } else {
+      return this.setState({error : 'credenciales invalidas'})
     }
+  }
   
     render() {
       return (
         <View>
-  <TextInput
+            <Text> Inicia sesion</Text>
+          <TextInput
             keyboardType="email-address"
             placeholder="email"
             onChangeText={(text) => this.setState({ email: text })}
@@ -44,22 +79,18 @@ class Login extends Component {
             onChangeText={(text) => this.setState({ password: text })}
             value={this.state.password}
           />
-          <TouchableOpacity onPress={() => this.onSubmit()}>
+          {this.state.error ? (
+            <Text>{this.state.error}</Text>):
+            null}
+          
+          <TouchableOpacity onPress={() => this.handleSubmit()}>
             <Text > Login </Text>
-          </TouchableOpacity>{" "}
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Register")}
           >
             <Text>Ir al registro</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Home")}
-          >
-            <Text>Entrar a la app</Text>
-          </TouchableOpacity>
         </View>
       );
-    }
-  };
-  
-  export default Login;
+    }}
