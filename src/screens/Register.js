@@ -13,54 +13,77 @@ export default class Register extends Component{
             userName: "",
             password: "",
             createdAt: "",
+            registrado: false,
+            error: ''
         }
     }
-    
-    componentDidMount(){
-        auth.onAuthStateChanged(user => {
-            if(user){
-                this.props.navigation.navigate("Home")
-                
-            }
-        })
+
+    // componentDidMount(){
+    //     auth.onAuthStateChanged((user) => {
+    //         if (user) {
+    //             this.props.navigation.navigate('Home')
+    //         }
+    //     })
+    // }
+
+    isEmailValid(){
+        if ((this.state.email === '') || (!this.state.email.includes('@'))){
+            this.setState({error: 'email invalido'})
+            console.log(this.state.error)
+            return false
+        } else {
+            return true
+        }
     }
 
-    validarFormulario(){
-        const email = this.state.email
-        const userName = this.state.userName
-        const password = this.state.password
-        if (email !== '' && userName !== '' && password !== ''){
+    isUserNameValid(){
+        if (this.state.userName === ''){
+            this.setState({error: 'Nombre de usuario invalido'})
+            return false
+        } else {
             return true
-        }else{
+        }
+    }
+
+    isPasswordValid(){
+        if ((this.state.password === '') || (!this.state.password >= 6)){
+            this.setState({error: 'contrasena invalida'})
+            return false
+        } else {
+            return true
+        }    
+    }
+
+
+    isFormValid(){
+        if(this.isEmailValid() && this.isUserNameValid() && this.isPasswordValid()) {
+            return true
+        } else {
             return false
         }
+        
     }
 
-    validarEmail(email) {
-        return email.includes('@');
-    }
-    validarUserName(userName) {
-        return userName !== '';
-    }
-    validarPassword(password) {
-        return password.length >= 6;
-    }
-    
+
 
     handleSubmit(){
+        if (this.isFormValid()){
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((response) => 
-        this.setState({registred: true}),
-        db.collection('users').add({
+        .then((response) => {
+            this.setState({registrado: true});
+
+        return db.collection('users').add({
             email: this.state.email,
             password:this.state.password,
             userName: this.state.userName,
             createdAt: Date.now(),
+        });
+
+
         })
-        )
         .then(() => this.props.navigation.navigate("Login"))
-        .catch((error) => this.setState({ error: "Fallo el registro" }))
-    }
+        .catch((error) => this.setState({ error: error.message }))
+    }}
 
 
 
@@ -68,9 +91,7 @@ export default class Register extends Component{
 
         return(
         <View style={styles.container}>
-            <Text>Formulario del Register</Text>
-
-            <Text>Navegacion cruzada a Login</Text>
+            <Text>Registrate</Text>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")}>
                 <Text>Ya tengo cuenta</Text>
@@ -83,8 +104,7 @@ export default class Register extends Component{
             value = {this.state.email}
             />
             <TextInput style = {styles.field}
-            keyboardType = 'default'
-            placeholder = 'userName'
+            placeholder = 'user name'
             onChangeText = {text => this.setState({userName:text})}
             value = {this.state.userName}
             />
@@ -95,9 +115,13 @@ export default class Register extends Component{
             onChangeText = {text => this.setState({password:text})}
             value = {this.state.password}
             />
-            <TouchableOpacity disabled={!this.validarFormulario()} onPress ={() => this.handleSubmit()}>
+            <TouchableOpacity  onPress ={() => this.handleSubmit()}>
                 <Text>Register</Text>
             </TouchableOpacity>
+
+            {this.state.error ? (
+            <Text>{this.state.error}</Text>):
+            null}
             
         </View>
     )
