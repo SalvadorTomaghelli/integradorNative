@@ -18,13 +18,13 @@ export default class Register extends Component{
         }
     }
 
-    // componentDidMount(){
-    //     auth.onAuthStateChanged((user) => {
-    //         if (user) {
-    //             this.props.navigation.navigate('Home')
-    //         }
-    //     })
-    // }
+    componentDidMount(){
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.props.navigation.navigate('HomeMenu')
+            }
+        })
+    }
 
     isEmailValid(){
         if ((this.state.email === '') || (!this.state.email.includes('@'))){

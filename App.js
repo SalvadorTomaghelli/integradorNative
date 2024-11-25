@@ -11,11 +11,7 @@ function App() {
     <NavigationContainer>
 
       <Stack.Navigator>
-       <Stack.Screen
-          name="HomeMenu"
-          component={HomeMenu}
-          options={{ headerShown: false }}
-        /> 
+       
         <Stack.Screen
           name="Login"
           component={Login}
@@ -26,6 +22,11 @@ function App() {
           component={Register}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="HomeMenu"
+          component={HomeMenu}
+          options={{ headerShown: false }}
+        /> 
       </Stack.Navigator>
     </NavigationContainer>
   );

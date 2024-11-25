@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { auth, db } from '../firebase/config'
 import Home from "../screens/Home";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Profile from "../screens/Profile";
@@ -8,6 +9,14 @@ class HomeMenu extends Component {
   constructor() {
     super();
   }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+        if (!user) {
+            this.props.navigation.navigate("Login")
+        }
+    })
+}
 
   render() {
     const Tab = createBottomTabNavigator();

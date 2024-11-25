@@ -18,12 +18,11 @@ export default class Profile extends Component{
     //       console.log(user)
     //   }
 
-    componentDidMount() {
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                this.props.navigation.navigate("Login")
-            }
-        })
+    
+
+    handleLogout(){
+        auth.signOut()
+        
     }
     
     render(){
@@ -32,6 +31,9 @@ export default class Profile extends Component{
                 <Text>Profile</Text>
                 <Text>Nombre: {auth.currentUser.userName}</Text>
                 <Text>Email: {auth.currentUser.email}</Text>
+                <TouchableOpacity  onPress ={() => this.handleLogout()}>
+                    <Text>cerrar sesion</Text>
+                </TouchableOpacity>
                 
             </View>
         )

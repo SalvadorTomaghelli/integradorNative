@@ -14,12 +14,13 @@ export default class Login extends Component {
     }
 
     componentDidMount(){
-        auth.onAuthStateChanged(() => {
-            if (this.state.logueado) {
-                this.props.navigation.navigate('Home')
-            }
-        })
-    }
+      auth.onAuthStateChanged((user) => {
+        console.log("el user es: ",user)
+          if (user) {
+              this.props.navigation.navigate('HomeMenu')
+          }
+      })
+  }
 
     isEmailValid(){
       if ((this.state.email === '') || (!this.state.email.includes('@'))){
@@ -51,17 +52,23 @@ export default class Login extends Component {
 
 
 
-    handleSubmit() {
-      if(this.isFormValid()){
-      auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(response => this.setState({logueado:true}))
-      .catch(e => this.setState({error: 'fallo el logueo'}))
-      return console.log(this.state.logueado)
-
-    } else {
-      return this.setState({error : 'credenciales invalidas'})
-    }
+handleSubmit() {
+  if (this.isFormValid()) {
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(response => {
+        this.setState({ logueado: true }, () => {
+          console.log(this.state.logueado);
+          this.props.navigation.navigate("HomeMenu");
+        });
+      })
+      .catch(e => {
+        this.setState({ error: 'Falló el logueo' });
+      });
+  } else {
+    this.setState({ error: 'Credenciales inválidas' });
   }
+}
+
   
     render() {
       return (
