@@ -25,6 +25,7 @@ class HomeMenu extends Component {
   render() {
     const Tab = createBottomTabNavigator();
     return (
+      
       <Tab.Navigator>
         <Tab.Screen
           name="Home"

@@ -107,7 +107,9 @@ handleSubmit() {
       container:{
           alignItems: 'center',
           width: '100%',
-          padding: 10
+          padding: 10,
+           backgroundColor: 'rgb(82 65 65)',
+           height: '100%'
       },
       field: {
           backgroundColor: 'gray',
@@ -133,7 +135,7 @@ handleSubmit() {
           fontSize: 30
       },
       logueo:{
-          color: 'blue',
+          color: 'rgb(161 161 236)',
           textDecorationLine: 'underline'
       }
   })

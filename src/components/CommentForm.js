@@ -29,7 +29,7 @@ class comentarioForm extends Component {
   render() {
     return (
       <View style= {styles.container}>
-        <Text>Nuevo comentario</Text>
+        <Text style={styles.titulo}>Agrega un comentario</Text>
         <TextInput style= {styles.input}
           placeholder="comenta algo"
           onChangeText={(text) => this.setState({ comentario: text })}
@@ -45,8 +45,8 @@ class comentarioForm extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     paddingHorizontal:10,
-    marginTop: 20,
 
   },
     input: {
@@ -62,12 +62,20 @@ const styles = StyleSheet.create({
     backgroundColor:'#28a745',
     paddingHorizontal: 10,
     paddingVertical: 6,
-    border: '1px solid #28a745'
+    border: '1px solid #28a745',
+    borderRadius: 10,
+    width: '10%',
   },
   texto: {
     color: '#fff',
     textAlign: 'center',
+    fontSize: 20,
+    textDecorationLine: 'underline'
 
+
+  },
+  titulo:{
+      fontSize: 40
   }
 
 
