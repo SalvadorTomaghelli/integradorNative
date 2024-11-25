@@ -91,10 +91,10 @@ export default class Register extends Component{
 
         return(
         <View style={styles.container}>
-            <Text>Registrate</Text>
+            <Text style = {styles.titulo}>Registrate</Text>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")}>
-                <Text>Ya tengo cuenta</Text>
+                <Text style = {styles.logueo}>Ya tengo cuenta</Text>
             </TouchableOpacity>
 
             <TextInput style = {styles.field}
@@ -116,18 +116,16 @@ export default class Register extends Component{
             value = {this.state.password}
             />
             <TouchableOpacity  onPress ={() => this.handleSubmit()}>
-                <Text>Register</Text>
+                <Text style = {styles.register}>Register</Text>
             </TouchableOpacity>
 
             {this.state.error ? (
-            <Text>{this.state.error}</Text>):
+            <Text style = {styles.error}>{this.state.error}</Text>):
             null}
             
         </View>
-    )
-    }
-    
-}
+    );
+    }}
 
 const styles = StyleSheet.create({
     container:{
@@ -135,4 +133,31 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 10
     },
+    field: {
+        backgroundColor: 'gray',
+        borderRadius: 5,
+        padding: 10,
+        margin: 5
+    },
+    error: {
+        color: 'white',
+        backgroundColor: '#e77575',
+        borderRadius: 5,
+        padding: 10,
+        marginTop: 5
+    },
+    register: {
+        textDecorationLine: 'underline',
+        backgroundColor: 'green',
+        color: 'white',
+        borderRadius: 5,
+        padding: 5
+    },
+    titulo:{
+        fontSize: 30
+    },
+    logueo:{
+        color: 'blue',
+        textDecorationLine: 'underline'
+    }
 })

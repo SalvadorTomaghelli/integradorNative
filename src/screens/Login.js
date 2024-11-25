@@ -72,32 +72,70 @@ handleSubmit() {
   
     render() {
       return (
-        <View>
-            <Text> Inicia sesion</Text>
-          <TextInput
+        <View style = {styles.container}>
+            <Text style ={styles.titulo}> Inicia sesion</Text>
+            <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Register")}
+          >
+            <Text style ={styles.logueo}>Ir al registro</Text>
+          </TouchableOpacity>
+          <TextInput style ={styles.field}
             keyboardType="email-address"
             placeholder="email"
             onChangeText={(text) => this.setState({ email: text })}
             value={this.state.email}
           />
-          <TextInput
+          <TextInput style ={styles.field}
             placeholder="password"
             secureTextEntry={true}
             onChangeText={(text) => this.setState({ password: text })}
             value={this.state.password}
           />
-          {this.state.error ? (
-            <Text>{this.state.error}</Text>):
-            null}
+          
           
           <TouchableOpacity onPress={() => this.handleSubmit()}>
-            <Text > Login </Text>
+            <Text style ={styles.register}> Login </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Register")}
-          >
-            <Text>Ir al registro</Text>
-          </TouchableOpacity>
+
+          {this.state.error ? (
+            <Text style ={styles.error}>{this.state.error}</Text>):
+            null}
+          
         </View>
       );
     }}
+
+    const styles = StyleSheet.create({
+      container:{
+          alignItems: 'center',
+          width: '100%',
+          padding: 10
+      },
+      field: {
+          backgroundColor: 'gray',
+          borderRadius: 5,
+          padding: 10,
+          margin: 5
+      },
+      error: {
+          color: 'white',
+          backgroundColor: '#e77575',
+          borderRadius: 5,
+          padding: 10,
+          marginTop: 5
+      },
+      register: {
+          textDecorationLine: 'underline',
+          backgroundColor: 'green',
+          color: 'white',
+          borderRadius: 5,
+          padding: 5
+      },
+      titulo:{
+          fontSize: 30
+      },
+      logueo:{
+          color: 'blue',
+          textDecorationLine: 'underline'
+      }
+  })
