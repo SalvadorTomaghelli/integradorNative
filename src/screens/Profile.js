@@ -49,19 +49,58 @@ export default class Profile extends Component {
 
     render() {
         return (
-            <View >
-                <Text >Profile</Text>
-                <Text >Nombre: {this.state.userName}</Text>
-                <Text >Email: {auth.currentUser.email}</Text>
-                <Text>Cantidad de comentarios: {this.state.comentarios.length}</Text>
+            <View style={styles.container}>
+                <Text style={styles.titulo}>Profile</Text>
+                <Text style={styles.info}>Nombre: {this.state.userName}</Text>
+                <Text style={styles.info}>Email: {auth.currentUser.email}</Text>
+                <Text style={styles.info}>Cantidad de comentarios: {this.state.comentarios.length}</Text>
                 <Text>
                     Comentarios: {this.state.comentarios.length === 0 ? (<Text>No hay posteos aun</Text>) :
                         <FlatList data={this.state.comentarios} keyExtractor={item => item.id.toString()} renderItem={({ item }) => { return <Comentarios infoComentarios={item} /> }} />}
                 </Text>
-                <TouchableOpacity onPress={() => this.handleLogout()}>
-                    <Text>Cerrar sesión</Text>
+                <TouchableOpacity  onPress={() => this.handleLogout()} style={styles.boton}>
+                    <Text style={styles.logout}>Cerrar sesión</Text>
                 </TouchableOpacity>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 10,
+      backgroundColor: 'rgb(82 65 65)', 
+    },
+    titulo: {
+      fontSize: 30,
+      backgroundColor: 'black',
+      color: 'rgb(242 243 220)',
+      borderRadius: 10,
+      margin: 10,
+      padding: 15,
+      textDecorationLine: 'underline',
+      textAlign: 'center',
+    },
+    info: {
+      fontSize: 18,
+      color: 'rgb(242 243 220)', 
+      marginVertical: 5,
+      paddingHorizontal: 10,
+    },
+    boton: {
+      backgroundColor: '#28a745',
+      paddingHorizontal: 10,
+      paddingVertical: 6,
+      borderRadius: 6,
+      marginTop: 20,
+      width: '20%',
+      alignSelf: 'center'
+
+    },
+    logout: {
+      color: '#fff',
+      textAlign: 'center',
+      textDecorationLine: 'underline'
+    }
+  });
