@@ -15,6 +15,7 @@ export default class Home extends Component{
         }
     }
     componentDidMount(){
+        console.log("uauRIO REGISTRADO?",JSON.stringify(auth.currentUser,null,4))
         db.collection('comentarios').orderBy('createdAt','desc').onSnapshot((docs)=>{
             let comentarios=[]
             docs.forEach((doc)=>{

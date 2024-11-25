@@ -14,14 +14,24 @@ export default class Profile extends Component{
           err: ""
         };
       }
+    //   componentDidMount(){
+    //       console.log(user)
+    //   }
+
+    componentDidMount() {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                this.props.navigation.navigate("Login")
+            }
+        })
+    }
     
     render(){
         return(
             <View>
-                <Text>
-                    Profile
-                    
-                </Text>
+                <Text>Profile</Text>
+                <Text>Nombre: {auth.currentUser.userName}</Text>
+                <Text>Email: {auth.currentUser.email}</Text>
                 
             </View>
         )
