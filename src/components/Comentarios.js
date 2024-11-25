@@ -14,12 +14,34 @@ class Comentarios extends Component {
   
     render() {
       return (
-        <View>
-            <Text>{this.props.infoComentarios.data.comentario}</Text>
-            <Text>Autor: {this.props.infoComentarios.data.email}</Text>
+        <View style = {styles.comentarios}>
+            <Text style = {styles.textoArriba}>{this.props.infoComentarios.data.comentario}</Text>
+            <Text style = {styles.textoAbajo}>Autor: {this.props.infoComentarios.data.email}</Text>
         </View>
       );
     }
   }
+  
+  const styles = StyleSheet.create({
+
+    comentarios:{
+      alignItems: 'flex-start',
+      width: '100%',
+      padding: 10,          
+      borderRadius: 10,
+      margin: 10,         
+      marginBottom: 20,
+    },
+    textoAbajo:{
+      borderTopWidth: 2,
+      color: 'black',
+    },
+    textoArriba:{
+      paddingBottom: 5
+    },
+    titulo:{
+      fontSize: 30
+  },
+})
 
   export default Comentarios;
