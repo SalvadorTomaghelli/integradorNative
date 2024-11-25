@@ -120,10 +120,7 @@ const styles = StyleSheet.create({
   },
   textoArriba:{
     paddingBottom: 5
-  },
-  titulo:{
-    fontSize: 30
-},
+  }
 })
 
 export default Comentarios;

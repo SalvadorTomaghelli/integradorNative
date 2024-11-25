@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { auth, db } from '../firebase/config'
+import { auth } from '../firebase/config'
 import Home from "../screens/Home";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Profile from "../screens/Profile";

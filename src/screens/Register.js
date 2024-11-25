@@ -68,7 +68,7 @@ export default class Register extends Component{
     handleSubmit(){
         if (this.isFormValid()){
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((response) => {
+        .then(() => {
             this.setState({registrado: true});
 
         return db.collection('users').add({

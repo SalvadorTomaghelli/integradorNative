@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { db, auth } from "../firebase/config";
 
@@ -10,14 +10,8 @@ class comentarioForm extends Component {
       comentario: "",
     };
   }
-//   componentDidMount(){
-//     auth.onAuthStateChanged(user => {
-//         if(user){
-//             this.props.navigation.navigate("Login")
-//         }
-//     })
-// }
-  onSubmit(comentario) {
+
+  onSubmit() {
     db.collection("comentarios").add({
       email: auth.currentUser.email,
       comentario: this.state.comentario,

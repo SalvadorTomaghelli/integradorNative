@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { View,Text, FlatList, StyleSheet } from "react-native";
-import { auth, db } from '../firebase/config'
+import { db } from '../firebase/config'
 import Comentarios from "../components/Comentarios";
 
 
@@ -21,7 +21,7 @@ export default class Home extends Component{
                     data:doc.data(),
                 })
             })
-            this.setState({comentarios:comentarios},
+            this.setState({comentarios:comentarios})
         })
     }
     render(){
@@ -36,7 +36,6 @@ export default class Home extends Component{
                 data={this.state.comentarios} 
                 keyExtractor={item => item.id.toString()} 
                 renderItem={({item})=>{return <Comentarios infoComentarios={item}/>}}/>} 
-                                                                                    {/*  fijarse si es toString()  */}
             </View>
         )
     }
