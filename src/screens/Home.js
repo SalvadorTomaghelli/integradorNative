@@ -31,7 +31,7 @@ export default class Home extends Component{
         return(
             <View style = {styles.container}>
                 <Text style= {styles.titulo}>
-                    Comentarios de la comunidad
+                    Comentarios de la comunidad:
                     
                 </Text>
                 {this.state.comentarios.length === 0 ? (<Text>No hay posteos aun</Text>) : 
@@ -48,10 +48,18 @@ export default class Home extends Component{
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        padding: 10
+        padding: 10,
+        backgroundColor: 'rgb(82 65 65)',
+        display: 'center'
     },
     titulo:{
-        fontSize: 30,
-        marginBottom: 10
+        fontSize: 15,
+        backgroundColor: 'black',
+        color: 'rgb(242 243 220)',
+        borderRadius: 10,
+        width: '20%',
+        margin: 10,
+        padding: 15,
+        textDecorationLine: 'underline'
     },
 })
