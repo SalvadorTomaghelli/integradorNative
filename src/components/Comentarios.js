@@ -25,6 +25,8 @@ class Comentarios extends Component {
       });
     }
   }
+  
+  
 
   like() {
     db.collection("comentarios")
@@ -70,9 +72,9 @@ class Comentarios extends Component {
     const { email, comentario, createdAt } = this.props.infoComentarios.data;
 
     return (
-      <View>
-        <Text>Autor: {email}</Text>
-        <Text>{comentario}</Text>
+      <View style={styles.comentarios}>
+        <Text style={styles.textoArriba}>Autor: {email}</Text>
+        <Text style={styles.textoAbajo}>{comentario}</Text>
         <Text>{new Date(createdAt).toLocaleString()}</Text>
 
 
@@ -102,6 +104,27 @@ class Comentarios extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
 
+  comentarios:{
+    alignItems: 'flex-start',
+    width: '50%',
+    padding: 10,          
+    borderRadius: 10,
+    margin: 10,         
+    marginBottom: 20,
+    borderWidth: 2
+  },
+  textoAbajo:{
+    borderTopWidth: 2,
+    color: 'black',
+  },
+  textoArriba:{
+    paddingBottom: 5
+  },
+  titulo:{
+    fontSize: 30
+},
+})
 
 export default Comentarios;

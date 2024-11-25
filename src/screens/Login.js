@@ -62,11 +62,9 @@ handleSubmit() {
         });
       })
       .catch(e => {
-        this.setState({ error: 'Falló el logueo' });
+        this.setState({ error: 'Credenciales invalidas' });
       });
-  } else {
-    this.setState({ error: 'Credenciales inválidas' });
-  }
+  } 
 }
 
   
