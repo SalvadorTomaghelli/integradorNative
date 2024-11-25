@@ -60,10 +60,6 @@ class Comentarios extends Component {
     db.collection("comentarios")
       .doc(this.props.infoComentarios.id)
       .delete()
-      .then(() => {
-        console.log("Comentario eliminado");
-      })
-      .catch((err) => console.log(err));
   }
 
   render() {

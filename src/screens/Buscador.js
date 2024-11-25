@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { FlatList, TextInput } from "react-native-web";
-import { auth, db } from '../firebase/config'
+import { db } from '../firebase/config'
 
 export default class Home extends Component{
     constructor(){
@@ -22,7 +22,7 @@ export default class Home extends Component{
                     data:doc.data(),
                 })
             })
-            this.setState({users:users, todosUsers:users},()=>console.log(this.state.users))
+            this.setState({users:users, todosUsers:users})
         })
     }
 
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "rgb(82, 65, 65)", // Fondo oscuro, igual que el Home
+    backgroundColor: "rgb(82, 65, 65)", 
   },
   titulo: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "rgb(242, 243, 220)", // Color claro para el texto
+    color: "rgb(242, 243, 220)", 
     backgroundColor: "black",
     textAlign: "center",
     borderRadius: 10,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
-    backgroundColor: "rgb(242, 243, 220)", // Fondo claro para contraste
+    backgroundColor: "rgb(242, 243, 220)", 
     color: "black",
     borderRadius: 10,
     padding: 10,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   resultado: {
     fontSize: 16,
-    color: "rgb(242, 243, 220)", // Color del texto de los resultados
+    color: "rgb(242, 243, 220)", 
     backgroundColor: "black",
     padding: 10,
     borderRadius: 10,

@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import { View,Text, FlatList, StyleSheet } from "react-native";
-import CommentForm from "../components/CommentForm";
-import { TextInput } from "react-native-web";
 import { auth, db } from '../firebase/config'
 import Comentarios from "../components/Comentarios";
 
@@ -15,7 +13,6 @@ export default class Home extends Component{
         }
     }
     componentDidMount(){
-        console.log("usuaRIO REGISTRADO?",JSON.stringify(auth.currentUser,null,4))
         db.collection('comentarios').orderBy('createdAt','desc').onSnapshot((docs)=>{
             let comentarios=[]
             docs.forEach((doc)=>{
@@ -24,7 +21,7 @@ export default class Home extends Component{
                     data:doc.data(),
                 })
             })
-            this.setState({comentarios:comentarios},()=>console.log(this.state.comentarios))
+            this.setState({comentarios:comentarios},
         })
     }
     render(){

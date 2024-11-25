@@ -15,7 +15,6 @@ export default class Login extends Component {
 
     componentDidMount(){
       auth.onAuthStateChanged((user) => {
-        console.log("el user es: ",user)
           if (user) {
               this.props.navigation.navigate('HomeMenu')
           }
@@ -25,7 +24,6 @@ export default class Login extends Component {
     isEmailValid(){
       if ((this.state.email === '') || (!this.state.email.includes('@'))){
           this.setState({error: 'email invalido'})
-          console.log(this.state.error)
           return false
       } else {
           return true
@@ -57,7 +55,6 @@ handleSubmit() {
     auth.signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(response => {
         this.setState({ logueado: true }, () => {
-          console.log(this.state.logueado);
           this.props.navigation.navigate("HomeMenu");
         });
       })

@@ -29,7 +29,6 @@ export default class Register extends Component{
     isEmailValid(){
         if ((this.state.email === '') || (!this.state.email.includes('@'))){
             this.setState({error: 'email invalido'})
-            console.log(this.state.error)
             return false
         } else {
             return true

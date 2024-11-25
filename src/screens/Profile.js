@@ -15,11 +15,7 @@ export default class Profile extends Component {
         };
     }
 
-    componentDidMount() {
-        
-        console.log('data: ', JSON.stringify(auth.currentUser, null, 4));
-
-        
+    componentDidMount() {        
         db.collection('users')
             .where('email', '==', `${auth.currentUser.email}`)
             .onSnapshot((docs) => {
@@ -39,7 +35,7 @@ export default class Profile extends Component {
                         data:doc.data(),
                     })
                 })
-                this.setState({comentarios:comentarios},()=>console.log(this.state.comentarios))
+                this.setState({comentarios:comentarios})
             })
     }
 
