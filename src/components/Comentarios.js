@@ -26,6 +26,7 @@ class Comentarios extends Component {
     }
   }
   
+  
   like() {
     db.collection("comentarios")
       .doc(this.props.infoComentarios.id)
@@ -57,14 +58,15 @@ class Comentarios extends Component {
   }
 
   deleteComentario() {
-    db.collection("comentarios")
+      db.collection("comentarios")
       .doc(this.props.infoComentarios.id)
       .delete()
       .then(() => {
         console.log("Comentario eliminado");
       })
       .catch((err) => console.log(err));
-  }
+    }
+  
 
   render() {
     const { email, comentario, createdAt } = this.props.infoComentarios.data;
@@ -93,10 +95,13 @@ class Comentarios extends Component {
 
       
         <TouchableOpacity
-  
           onPress={() => this.deleteComentario()}
-        >
-          <Text>Eliminar</Text>
+        > 
+          {auth.currentUser.email === email && (
+          <TouchableOpacity onPress={() => this.deleteComentario()}>
+            <Text>Eliminar</Text>
+          </TouchableOpacity>
+        )}
         </TouchableOpacity>
       </View>
     );
