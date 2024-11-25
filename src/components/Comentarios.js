@@ -26,11 +26,12 @@ class Comentarios extends Component {
 
     comentarios:{
       alignItems: 'flex-start',
-      width: '100%',
+      width: '50%',
       padding: 10,          
       borderRadius: 10,
       margin: 10,         
       marginBottom: 20,
+      borderWidth: 2
     },
     textoAbajo:{
       borderTopWidth: 2,

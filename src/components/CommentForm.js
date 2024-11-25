@@ -18,17 +18,13 @@ class comentarioForm extends Component {
 //     })
 // }
   onSubmit(comentario) {
-    // console.log(
-    //   "Valores del comentario:",
-    //   "comentario:",
-    //   this.state.comentario,
-    // );\
     db.collection("comentarios").add({
       email: auth.currentUser.email,
       comentario: this.state.comentario,
       createdAt: Date.now(),
       likes:[]
     })
+    this.props.navigation.navigate('Home')
   }
   render() {
     return (

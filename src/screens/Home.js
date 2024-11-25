@@ -34,7 +34,6 @@ export default class Home extends Component{
                     Comentarios de la comunidad
                     
                 </Text>
-                <CommentForm/>
                 {this.state.comentarios.length === 0 ? (<Text>No hay posteos aun</Text>) : 
                 <FlatList 
                 data={this.state.comentarios} 
@@ -52,6 +51,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     titulo:{
-        fontSize: 30
+        fontSize: 30,
+        marginBottom: 10
     },
 })
