@@ -33,19 +33,54 @@ export default class Home extends Component{
 
     render(){
         return(
-
-            <View>
-                <Text>Buscador</Text>
-                <TextInput
+            <View style={styles.container}>
+                <Text style={styles.titulo}>Buscador</Text>
+                <TextInput 
+                    style={styles.input}
                     placeholder="Busca un nombre"
                     value={this.state.buscarUser}
                     onChangeText={(text) => { this.setState({ buscarUser: text }); this.onSubmit(text);}}
                 />
                 <FlatList data = {this.state.users}  
                 keyExtractor={(item) => item.id.toString()} 
-                renderItem={({ item }) => <Text> {item.data.userName}</Text>}/>
+                renderItem={({ item }) => <Text style={styles.resultado}> {item.data.userName}</Text>}/>
                 
             </View>
         )
     }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "rgb(82, 65, 65)", // Fondo oscuro, igual que el Home
+  },
+  titulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "rgb(242, 243, 220)", // Color claro para el texto
+    backgroundColor: "black",
+    textAlign: "center",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
+  },
+  input: {
+    backgroundColor: "rgb(242, 243, 220)", // Fondo claro para contraste
+    color: "black",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
+    fontSize: 16,
+  },
+  resultado: {
+    fontSize: 16,
+    color: "rgb(242, 243, 220)", // Color del texto de los resultados
+    backgroundColor: "black",
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 5,
+  },
+});
